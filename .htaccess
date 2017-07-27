@@ -1,0 +1,20 @@
+# Do not remove this line or mod_rewrite rules and search engine friendly URLs will stop working
+# Указание кодировки файлов
+AddDefaultCharset UTF-8
+# Указание индексного файла
+DirectoryIndex index.php
+# Переадресация с index.php на корень чтоб не путать корень с индексом
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteBase /
+	
+#    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\ HTTP/
+#    RewriteRule ^index\.php$ http://raspkit.ru/ [R=301,L]
+	
+	
+	RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
+	RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+	
+</IfModule>
+AddType application/x-httpd-php .php
+php_value max_execution_time 240
